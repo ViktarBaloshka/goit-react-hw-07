@@ -6,10 +6,11 @@ import ContactList from "../ContactList/ContactList";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchContacts } from "../../redux/contactsOps";
+import { selectIsError, selectIsLoading } from "../../redux/selectors";
 
 export default function App() {
-  const isLoading = useSelector((state) => state.contacts.isLoading);
-  const isError = useSelector((state) => state.contacts.isError);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
 
   const dispatch = useDispatch();
 

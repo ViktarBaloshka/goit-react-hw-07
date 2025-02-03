@@ -3,19 +3,14 @@ import clsx from "clsx";
 import s from "../ContactList/ContactList.module.css";
 import { useSelector } from "react-redux";
 
-import { selectFilter } from "../../redux/selectors";
-import { selectContact } from "../../redux/selectors";
+import { selectFilteredContacts } from "../../redux/contactsSlice";
 
 export default function ContactList() {
-  const contacts = useSelector(selectContact);
-  const filter = useSelector(selectFilter);
-  const contactsData = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const contacts = useSelector(selectFilteredContacts);
 
   return (
     <ul className={clsx(s.contactList)}>
-      {contactsData.map((contact) => (
+      {contacts.map((contact) => (
         <li className={clsx(s.contactListItems)} key={contact.id}>
           <Contact data={contact} />
         </li>
